@@ -5,6 +5,8 @@ import db
 
 
 # users_id = '107265371'
+# year = int(input('Введите год: '))
+
 
 def get_users_check():
     data = get_users(event.user_id)
@@ -23,7 +25,7 @@ def get_users_check():
 
     # Добавление возраста или года кандидата: (запросить данные)
     data['age'] = 25
-    data['birth_year'] = 1995
+    data['birth_year'] = 2000
 
     # Инвертировать пол:
     if data['sex'] == 2:
