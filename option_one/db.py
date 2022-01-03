@@ -25,9 +25,8 @@ try:
 except Exception as _ex:
     print("[INFO] Ошибка при работе с PostgreSQL", _ex)
 
-    # Создание новой таблицы (запустить функцию):
 
-
+# Создание новой таблицы (запустить функцию):
 def create_table():
     with connection.cursor() as cursor:
         cursor.execute(
@@ -40,6 +39,9 @@ def create_table():
         )
 
         print("[INFO] Таблица успешно создана")
+
+
+# create_table()
 
 
 # вставка данных в таблицу:

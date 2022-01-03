@@ -24,7 +24,7 @@ def get_users_check():
     if data['sex'] == 2:
         data['sex'] = 1
     elif data['sex'] == 0 or 'sex' not in data:
-        print('Введите пол: ')
+        input('Введите пол: ')
     else:
         data['sex'] = 2
 
