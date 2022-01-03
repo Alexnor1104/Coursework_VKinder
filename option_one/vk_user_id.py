@@ -30,8 +30,8 @@ def get_users_check():
     # Инвертировать пол:
     if data['sex'] == 2:
         data['sex'] = 1
-    elif data['sex'] == 0 or 'sex' not in data:
-        input('Введите пол: ')
+    elif 'sex' not in data:
+        data['sex'] = 0
     else:
         data['sex'] = 2
 
@@ -44,7 +44,7 @@ def get_user_search():
         "fields": ['city,sex,photo_400_orig,bdate,domain,activities,photo_id'],
         # "count": "10",
         "sex": data['sex'],
-        "birth_year":data['birth_year'],
+        # "birth_year":data['birth_year'],
         # "age_to": data['age'],
         "status": data['verified'],
         'hometown': data['city']['title'],

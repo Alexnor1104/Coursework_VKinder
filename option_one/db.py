@@ -26,7 +26,7 @@ except Exception as _ex:
     print("[INFO] Ошибка при работе с PostgreSQL", _ex)
 
 
-# Создание новой таблицы (запустить функцию):
+# Создание новой таблицы (отредактировать файл config.py и запустить функцию create_table()):
 def create_table():
     with connection.cursor() as cursor:
         cursor.execute(
