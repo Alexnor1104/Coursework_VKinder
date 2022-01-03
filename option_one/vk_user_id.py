@@ -20,7 +20,12 @@ def get_users_check():
     # a = datetime.datetime.today().year
     # print(a)
     # data['age'] = int(input('Введите возраст: '))
+
+    # Добавление возраста или года кандидата: (запросить данные)
     data['age'] = 25
+    data['birth_year'] = 1995
+
+    # Инвертировать пол:
     if data['sex'] == 2:
         data['sex'] = 1
     elif data['sex'] == 0 or 'sex' not in data:
@@ -37,7 +42,8 @@ def get_user_search():
         "fields": ['city,sex,photo_400_orig,bdate,domain,activities,photo_id'],
         # "count": "10",
         "sex": data['sex'],
-        "age_to": data['age'],
+        "birth_year":data['birth_year'],
+        # "age_to": data['age'],
         "status": data['verified'],
         'hometown': data['city']['title'],
 
@@ -98,9 +104,12 @@ for event in longpoll.listen():
                 write_msg(event.user_id, f'Имя кандидата: {get_user_search()[2]}')
 
                 # Добавляет топ3 фото кандидата:
-                for photo in get_photo(users_ids):
-                    add_photo = attachments.append('photo{}_{}_{}'.format(users_ids, photo, users_ids))
-                write_msg(event.user_id, add_photo)
+                try:
+                    for photo in get_photo(users_ids):
+                        add_photo = attachments.append('photo{}_{}_{}'.format(users_ids, photo, users_ids))
+                    write_msg(event.user_id, add_photo)
+                except vk_api.exceptions.ApiError:
+                    write_msg(event.user_id, 'Нет фотографий')
 
                 # Добавляем найденного кандидата в таблицу:
                 db.insert_users(users_ids, get_user_search()[2], links_user)
@@ -117,3 +126,4 @@ for event in longpoll.listen():
                 write_msg(event.user_id, f'{get_users(event.user_id)["first_name"]}! Введи "Поиск"')
 
 # print(get_user_search())
+
