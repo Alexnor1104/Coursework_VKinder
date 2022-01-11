@@ -1,3 +1,5 @@
+# Новая ветка
+
 from users_data import *
 from vk_photo import get_photo
 from random import randrange
