@@ -11,7 +11,7 @@ import db
 def get_users_check():
     data = get_users(event.user_id)
     if 'title' not in data['city'] or 'city' not in data:
-        data['city']['title'] = input('Введите город: ')
+        data['city']['title'] = 'Москва'
 
     # if 'bdate' not in data or not re.findall(r"\d{1,2}.\d{1,2}.\d{4}", data['bdate']):
     #     # bdate = input('Введите год: ')
@@ -31,7 +31,7 @@ def get_users_check():
     if data['sex'] == 2:
         data['sex'] = 1
     elif 'sex' not in data:
-        data['sex'] = 0
+        data['sex'] = 1
     else:
         data['sex'] = 2
 
